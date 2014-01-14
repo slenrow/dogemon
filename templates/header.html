@@ -1,0 +1,20 @@
+<h1>Group 21 Photo Gallery</h1>
+{% if message %}
+<span class="message">{{message}}</span>
+{% endif %}
+<ul class="header">
+	{% if current_user %}
+	<li>Logged in as {{current_user}}</li>
+	<li><a href="{{docroot}}">Home</a></li>
+	<li><a href="{{docroot}}/user/edit">Edit Account</a></li>
+	<li><a href="{{docroot}}/albums?username={{current_user}}">My Albums</a></li>
+	<li><a href="{{docroot}}/albums/edit">Edit Albums</a></li>
+	<li><a href="{{docroot}}/logout">Logout</a></li>
+	{% else %}
+	<li><a href="{{docroot}}">Home</a></li>
+	<li><a href="{{docroot}}/login">Log In</a></li>
+	<li><a href="{{docroot}}/user">Sign up</a></li>
+	{% endif %}
+</ul>
+<div class="clear"><!-- --></div>
+<hr>

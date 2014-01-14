@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet" media="screen">
+</head>
+<body>
+{{header|safe}}
+<h2>Album photos:</h2>
+{% if photos|length == 0 %}
+	<div class="empty">none</div>
+{% else %}
+	<ul class="photo_thumb">
+		{% for picture in photos %}
+		<li>
+			<a href="{{docroot}}/pic?id={{picture.id}}"><img src="/static/pictures/{{picture.id}}.{{picture.filetype}}" /></a>
+			<form action="{{docroot}}/album/edit?id={{album.id}}" method="post">
+				<input type="hidden" name="albumid" value="{{album.id}}" />
+				<input type="hidden" name="picid" value="{{picture.id}}" />
+				<input type="submit" name="op" value="delete" />
+			</form>
+		</li>
+		{% endfor %}
+	</ul>
+	<div class="clear"><!-- --></div>
+{% endif %}
+<hr>
+<h2>Add photo</h2>
+<form action="{{docroot}}/album/edit?id={{album.id}}" method="post" enctype="multipart/form-data">
+	<span>Caption: </span><input type="text" name="caption" value="" /><br>
+	<input type="file" name="photo" /><br>
+	<input type="hidden" name="albumid" value="{{album.id}}" />
+	<input type="submit" name="op" value="add" /><br>
+</form>
+{% if album.access == "private" %}
+	<hr>
+	<h2>Shared with users:</h2>
+	{% if album_access_list|length == 0 %}
+	<div class="empty">none</div>
+	{% else %}
+		{% for aa in album_access_list %}
+		<span><form action="{{docroot}}/album/edit?id={{album.id}}" method="post" class="inline_form">
+					<input type="hidden" name="username" value="{{aa.username}}" />
+					<input type="hidden" name="albumid" value="{{album.id}}" />
+					<input type="submit" name="op" value="revoke" />
+		</form> - <a href="{{docroot}}/albums?username=">{{aa.username}}</a></span><br>
+		{% endfor %}
+	{% endif %}
+	<hr>
+	<h2>Share with new user:</h2>
+		<form action="{{docroot}}/album/edit?id={{album.id}}" method="post">
+			<input type="hidden" name="albumid" value="{{album.id}}" />
+			<input type="username" name="username" /><br>
+			<input type="submit" name="op" value="grant" /><br>
+		</form>
+{% endif%}
+<hr>
+<h2>Adjust album privacy</h2>
+<form action="{{docroot}}/album/edit?id={{album.id}}" method="post">
+	<input type="hidden" name="albumid" value="{{album.id}}" />
+	<input type="radio" name="access" value="public" {% if album.access == "public" %}checked=checked{% endif %} >Public<br>
+	<input type="radio" name="access" value="private" {% if album.access == "private" %}checked=checked{% endif %} >Private<br>
+	<input type="submit" name="op" value="adjust">
+</form>
+<footer>EECS 485 > Group 21 > Project 2</footer>
+</body>
+</html>

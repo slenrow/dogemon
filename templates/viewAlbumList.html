@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet" media="screen">
+</head>
+<body>
+{{header|safe}}
+<h2>Albums by {{username}}</h2>
+<ul class="linked">
+{% for album in albums %}
+	<li><a href="{{docroot}}/album?id={{album.id}}">{{album.title}}</a></li>
+{% endfor %}
+</ul>
+<footer>EECS 485 > Group 21 > Project 2</footer>
+</body>
+</html>

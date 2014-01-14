@@ -1,0 +1,90 @@
+body {
+	padding: 20px;
+	margin-bottom: 50px;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+footer{
+	position: fixed;
+	bottom:0px;
+	left: 0px;
+	padding-left: 25px;
+	width: 100%;
+	background-color: gray;
+}
+
+ul.header {
+	list-style-type: none;
+}
+ul.header li {
+	display: inline;
+	float: left;
+	margin: 5px;
+}
+
+ul.photo_thumb {
+	list-style-type: none;
+}
+
+ul.photo_thumb {
+	text-align: center;
+}
+
+ul.photo_thumb li {
+	display: inline;
+	float: left;
+	margin: 10px;
+}
+
+ul.photo_thumb img {
+	width: 150px;
+}
+
+ul.linked {
+	list-style-type: none;
+}
+
+ul.linked {
+	font-weight: bold;
+}
+
+.clear {
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+div.photo {
+	display: table;
+}
+
+form.inline_form {
+	display: inline;
+}
+
+li {
+	font-weight: normal;
+}
+
+input[type="submit"], a, a:visited {
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	color: blue;
+	cursor: pointer;
+	padding: 0px;
+	margin: 0px;
+	font-size: 100%;
+	font-weight: normal;
+}
+
+span.message {
+	padding: 5px;
+	background-color: gray;
+}

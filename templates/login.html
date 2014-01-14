@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet" media="screen">
+<style>
+body {
+	padding: 20px;
+}
+
+
+:invalid { 
+  border-color: #e88;
+  -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+  -moz-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
+  -o-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
+  -ms-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
+  box-shadow:0 0 5px rgba(255, 0, 0, .8);
+}
+
+:required {
+  border-color: #88a;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  -o-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  -ms-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+}
+
+form {
+  width:300px;
+}
+
+input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border:1px solid #ccc;
+  font-size:20px;
+  width:290px;
+  padding-left:5px;
+  padding-right:5px;
+  min-height:30px;
+  display:block;
+  margin-bottom:15px;
+  margin-top:5px;
+  outline: none;
+
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  -o-border-radius:5px;
+  -ms-border-radius:5px;
+  border-radius:5px;
+}
+
+input[type=submit] {
+  background:none;
+  padding:10px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+{{header|safe}}
+<h2>{% if logged_in == "1" %}Your session has expired. {% endif %}Login to continue.</h2>
+<p><a href="{{docroot}}/user/forgot">Forgot Password?</a></p>
+<form method="post" action="{{docroot}}/login">
+  <label>Username:</label>
+  <input type="text" id="username" name="username" placeholder="Username" required pattern="^[A-Za-z0-9_]{3,20}$" title="Username is 3 to 20 characters long and consists of letters, digits, and/or underscores.">
+
+  <label>Password:</label>
+  <input type="password" id="password" name="password" required>
+
+  <input type="hidden" name="redirect_url" value="{{redirect_url}}">
+  <input type="submit" name="op" value="Log In"> 
+
+</form>
+
+<footer>EECS 485 > Group 21 > Project 2</footer>
+</body>

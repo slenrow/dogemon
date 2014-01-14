@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet" media="screen">
+</head>
+<body>
+{{header|safe}}
+<h2>Users and viewable albums</h2>
+<ul class="linked">
+	{% for user_albums in user_albums_list%}
+	<li><a href="{{docroot}}/albums?username={{user_albums[0]}}">{{user_albums[0]}}</a></li>
+		<ul>
+		{% for user_album in user_albums[1] %}
+		<li><a href="{{docroot}}/album?id={{user_album.id}}">{{user_album.title}}</a></li>
+		{% endfor%}
+		</ul>
+		<br>
+	</li>
+	{% endfor %}
+</ul>
+<footer>EECS 485 > Group 21 > Project 2</footer>
+</body>
+</html>

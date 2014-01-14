@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Photo Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet" media="screen">
+</style>
+</head>
+<body>
+{{header|safe}}
+<h2>{{album.title}}</h2>
+<div class="photo">
+	<span class="left">{% if ap.prev %}<a href="{{docroot}}/pic?id={{ap.prev}}">Previous photo</a>{% endif %}</span>
+	<span class="right">{% if ap.next %}<a href="{{docroot}}/pic?id={{ap.next}}">Next photo</a>{% endif %}</span>
+	<div class="clear"><!-- --></div>
+	<img src="/static/pictures/{{photo.id}}.{{photo.filetype}}" />
+	<h3>{{ap.caption}}</h3>
+	<span>Date uploaded: {{photo.date}}</span>
+</div>
+<footer>EECS 485 > Group 21 > Project 2</footer>
+</body>
+</html>
